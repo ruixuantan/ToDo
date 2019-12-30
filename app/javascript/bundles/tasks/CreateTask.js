@@ -7,8 +7,9 @@ export default class CreateTask extends React.Component {
     this.state = {
       description: '',
       dateline: '',
-      is_posted: true
-    }
+      is_completed: false,
+      name: ''
+    };
   }
 
   handleInputChange = (event) => {
@@ -16,19 +17,34 @@ export default class CreateTask extends React.Component {
   }
 
   createTaskRequest = (event) => {
-    console.log('this.state', this.state);
-    fetch('/api/v1/tasks', {
+
+    //post tag first
+    fetch('/api/v1/tags', {
       method: 'post',
-      body: JSON.stringify(this.state),
+      body: JSON.stringify({name: this.state.name}),
       headers: { 'Content-Type': 'application/json' },
     }).then((response) => {
-      alert('Task created successfully');
       location.href = '/';
+      console.log('Tag Created');
+    });
+
+    fetch('/api/v1/tasks', {
+      method: 'post',
+      body: JSON.stringify({
+        description: this.state.description,
+        dateline: this.state.dateline,
+        is_completed: this.state.is_completed,
+        tags: [{name: this.state.name.toLowerCase()}]
+      }),
+      headers: { 'Content-Type': 'application/json' },
+    }).then((response) => {
+      location.href = '/';
+      alert('Task created successfully');
     });
   }
 
   render() {
-    const {description, dateline, is_posted} = this.state;
+    const {description, dateline, is_completed, name} = this.state;
     return (
       <div>
         <h3>New Task</h3>
@@ -51,14 +67,25 @@ export default class CreateTask extends React.Component {
             />
         </div>
         <div>
-          <label>Is Posted: </label>
+          <label>Completed?: </label>
           <input
             type='text'
-            name='is_posted'
-            value={is_posted}
+            name='is_completed'
+            value={is_completed}
             onChange={this.handleInputChange}
             />
         </div>
+
+        <div>
+          <label>Tags: </label>
+          <input
+            type='text'
+            name='name'
+            value = {name}
+            onChange={this.handleInputChange}
+            />
+        </div>
+
         <button onClick={this.createTaskRequest}>Create</button>
       </div>
     );

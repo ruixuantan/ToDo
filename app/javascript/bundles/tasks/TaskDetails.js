@@ -1,4 +1,5 @@
 import React from 'react';
+import { stringifyTags } from './utils';
 
 export default class TaskDetails extends React.Component {
   constructor(props) {
@@ -15,6 +16,7 @@ export default class TaskDetails extends React.Component {
 
   render() {
     const { task } = this.state;
+    console.log(task)
     return (
       <div>
         <div>
@@ -28,9 +30,15 @@ export default class TaskDetails extends React.Component {
         </div>
 
         <div>
-          <label> Is Posted </label>
-          <p> {task.is_posted} </p>
+          <label> Completed? </label>
+          <p> {task.is_completed ? 'Done' : 'Pending' } </p>
         </div>
+
+        <div>
+          <label> Tags </label>
+          <p> {JSON.stringify(task.tags)} </p>
+        </div>
+
       </div>
     );
   }

@@ -55,3 +55,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'react_on_rails'
 gem 'mini_racer', platforms: :ruby
+
+gem 'react-dnd-html5-backend-rails'
+gem 'react-dnd-rails'
+gem 'react-tags-rails'

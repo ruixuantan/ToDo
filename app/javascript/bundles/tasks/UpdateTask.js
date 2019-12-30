@@ -6,7 +6,7 @@ export default class UpdateTask extends React.Component {
     this.state = {
       description: '',
       dateline: '',
-      is_posted: true
+      is_completed: false
     }
   }
 
@@ -33,7 +33,7 @@ export default class UpdateTask extends React.Component {
   }
 
   render() {
-    const {description, dateline, is_posted} = this.state;
+    const {description, dateline, is_completed} = this.state;
     return (
       <div>
         <h3>New Task</h3>
@@ -56,11 +56,11 @@ export default class UpdateTask extends React.Component {
             />
         </div>
         <div>
-          <label>Is Posted: </label>
+          <label>Completed?</label>
           <input
             type='text'
-            name='is_posted'
-            value={is_posted}
+            name='is_completed'
+            value={is_completed}
             onChange={this.handleInputChange}
             />
         </div>

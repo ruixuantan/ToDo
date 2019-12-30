@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { stringifyTags } from './utils';
 
 export default class Tasks extends React.Component {
   constructor(props) {
@@ -36,8 +37,9 @@ export default class Tasks extends React.Component {
               <th>ID</th>
               <th>Description</th>
               <th>Dateline</th>
-              <th>Is Posted</th>
+              <th>Completed?</th>
               <th>Actions</th>
+              <th>Tags</th>
             </tr>
           </thead>
           <tbody>
@@ -52,7 +54,7 @@ export default class Tasks extends React.Component {
                     </Link>
                   </td>
                   <td>{task.dateline}</td>
-                  <td>{task.is_posted ? 'Yes' : 'No' }</td>
+                  <td>{task.is_completed ? 'Done' : 'Pending' }</td>
                   <td>
                     <Link to={`/tasks/${task.id}/edit`}>
                       Edit
@@ -60,6 +62,9 @@ export default class Tasks extends React.Component {
                     <button onClick={() => this.handleDelete(task.id) }>
                       Delete
                     </button>
+                  </td>
+                  <td>
+                    {stringifyTags(task.tags)}
                   </td>
                 </tr>
               )
