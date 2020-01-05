@@ -3,10 +3,10 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import Tasks from './bundles/tasks/index';
-import TaskDetails from './bundles/tasks/TaskDetails';
-import CreateTask from './bundles/tasks/CreateTask';
-import UpdateTask from './bundles/tasks/UpdateTask';
+import Tasks from './components/tasks/index';
+import TaskDetails from './components/tasks/TaskDetails';
+import UpdateTask from './components/tasks/UpdateTask';
+import Tags from './components/tags/TagIndex'
 
 export default () => {
   return (
@@ -14,11 +14,6 @@ export default () => {
       <Route exact path="/">
         <Tasks />
       </Route>
-      <Route
-        path="/tasks/new"
-        exact
-        component={CreateTask}
-        />
       <Route
         path="/tasks/:id/edit"
         exact
@@ -29,6 +24,11 @@ export default () => {
         exact
         component={TaskDetails}
        />
+       <Route
+         path="/tags"
+         exact
+         component={Tags}
+        />
     </Switch>
   );
 }

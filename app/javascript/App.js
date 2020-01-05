@@ -4,6 +4,7 @@ import {
   Link
 } from "react-router-dom";
 import Routes from './Routes';
+import './stylesheets/App.css';
 
 export default class App extends React.Component {
   render() {
@@ -11,11 +12,9 @@ export default class App extends React.Component {
       <Router>
         <h1>My To-Do List</h1>
         <div>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-        </ul>
+        <div>
+          <Link to="/">Home</Link>
+        </div>
         <hr />
         </div>
         <Routes />

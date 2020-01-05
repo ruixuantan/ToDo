@@ -1,7 +1,7 @@
 class Api::V1::TasksController < ApplicationController
 
   def index
-    all_tasks = Task.all.map do |task|
+    all_tasks = Task.all.order(:dateline).map do |task|
       {
         id: task.id,
         description: task.description,
@@ -18,7 +18,12 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def create
-    task = Task.create(task_params)
+    task = Task.new(task_params)
+    tag_array = task.tags.collect { |tag| Tag.find_or_create_by(name: tag.name) }
+    task.tags = []
+    task.save
+    make_tagging(tag_array, task.id)
+
     render task_json(task)
   end
 
@@ -28,6 +33,8 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def update
+    #tag_array = task.tags.collect { |tag| Tag.find_or_create_by(name: tag.name) }
+    #make_tagging(tag_array, task.id)
     task = Task.find(params[:id])
     task.update(task_params)
     render task_json(task)
@@ -52,6 +59,15 @@ class Api::V1::TasksController < ApplicationController
         }
       end
     }
+  end
+
+  def make_tagging(tag_array, task_id)
+    tag_array.map do |tag|
+      tagging = Tagging.new
+      tagging.task_id = task_id
+      tagging.tag_id = tag.id
+      tagging.save
+    end
   end
 
   def task_params

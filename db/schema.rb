@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2019_12_28_090202) do
 
   create_table "tasks", force: :cascade do |t|
     t.text "description"
-    t.string "dateline"
+    t.datetime "dateline"
     t.boolean "is_completed"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

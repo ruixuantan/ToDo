@@ -15,11 +15,10 @@ class Api::V1::TagsController < ApplicationController
   end
 
   def destroy
-    Tag.destroy(params[:id])
+    tag = Tag.destroy(params[:id])
   end
 
   def tag_params
-    params.require(:tag).permit(:name)
+    params.require(:tag).permit(:id, :name)
   end
-
 end
