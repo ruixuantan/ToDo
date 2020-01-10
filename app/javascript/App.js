@@ -5,7 +5,7 @@ import Home from "./Home";
 import Dashboard from "./Dashboard";
 import Routes from "./Routes";
 
-import "../assets/stylesheets/App.css";
+import "../assets/stylesheets/application.css";
 
 export default class App extends React.Component {
   constructor() {
