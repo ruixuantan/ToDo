@@ -1,15 +1,17 @@
-import React from 'react';
-import TaskDate from './TaskDate'
-import {arrayifyTags} from '../utils/utils'
+import React from "react";
+import TaskDate from "./TaskDate";
+import axios from "axios";
+import TagInput from "../tags/TagInput";
+import { objectifyTags } from "../utils/utils";
 
 export default class CreateTask extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      description: '',
-      dateline: '',
+      description: "",
+      dateline: "",
       is_completed: false,
-      tag_string: ''
+      tags: []
     };
   }
 
@@ -22,32 +24,29 @@ export default class CreateTask extends React.Component {
   }
 
   toggleChange = () => {
-    this.setState({
-      is_completed: !this.state.is_completed
-    });
+    this.setState({ is_completed: !this.state.is_completed });
+  }
+
+  handleTagAddition = (tagsPassed) => {
+    this.setState({ tags: tagsPassed });
   }
 
   createTaskRequest = (event) => {
-
-    const data = {
+    axios.post("/api/v1/tasks", {
       description: this.state.description,
       dateline: this.state.dateline,
       is_completed: this.state.is_completed,
-      tags_attributes: arrayifyTags(this.state.tag_string)
-    };
-
-    fetch('/api/v1/tasks', {
-      method: 'post',
-      body: JSON.stringify(data),
-      headers: { 'Content-Type': 'application/json'}
+      tags_attributes: objectifyTags(this.state.tags)
+    },
+    {validateStatus: (status) => { return true; }
     }).then((response) => {
-      console.log(response)
-      alert('Task created successfully');
-      location.href = '/';
+      alert("Task created successfully");
+      location.href = "/dashboard";
     });
   }
 
   render() {
+    console.log(this.props);
     const {description, dateline, is_completed, tag_string} = this.state;
     return (
       <div>
@@ -55,8 +54,8 @@ export default class CreateTask extends React.Component {
         <div>
           <label>Description: </label>
           <input
-            type='text'
-            name='description'
+            type="text"
+            name="description"
             value={description}
             onChange={this.handleInputChange}
             />
@@ -65,22 +64,14 @@ export default class CreateTask extends React.Component {
         <div>
           <label>Completed</label>
           <input
-            type='checkbox'
-            name='is_completed'
+            type="checkbox"
+            name="is_completed"
             value={is_completed}
             checked={this.state.is_completed}
             onChange={this.toggleChange}
             />
         </div>
-        <div>
-          <label>Tags: </label>
-          <input
-            type='text'
-            name='tag_string'
-            value = {tag_string}
-            onChange={this.handleInputChange}
-            />
-        </div>
+        <TagInput handleTagAddition = {this.handleTagAddition}/>
         <button onClick={this.createTaskRequest}>Add</button>
       </div>
     );

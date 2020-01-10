@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { stringifyTags, dateToString } from '../utils/utils';
+import React from "react";
+import { Link } from "react-router-dom";
+import { stringifyTags, dateToString } from "../utils/utils";
 
 export default class TaskTable extends React.Component {
   constructor(props) {
@@ -34,7 +34,7 @@ export default class TaskTable extends React.Component {
                     </Link>
                   </td>
                   <td>{dateToString(task.dateline)}</td>
-                  <td>{task.is_completed ? 'Done' : 'Pending' }</td>
+                  <td>{task.is_completed ? "Done" : "Pending" }</td>
                   <td>
                     <Link to={`/tasks/${task.id}/edit`}>
                       Edit

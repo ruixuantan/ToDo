@@ -1,12 +1,13 @@
 class Api::V1::TasksController < ApplicationController
 
   def index
-    all_tasks = Task.all.order(:dateline).map do |task|
+    all_tasks = Task.where({user_id: current_user.id}).order(:dateline).map do |task|
       {
         id: task.id,
         description: task.description,
         dateline: task.dateline,
         is_completed: task.is_completed,
+        user_id: current_user.id,
         tags: task.tags.map do |tag|
           {
             name: tag.name
@@ -19,7 +20,9 @@ class Api::V1::TasksController < ApplicationController
 
   def create
     task = Task.new(task_params)
-    tag_array = task.tags.collect { |tag| Tag.find_or_create_by(name: tag.name) }
+    task.user_id = current_user.id
+    tag_array = task.tags.collect { |tag| Tag.find_or_create_by(name: tag.name,
+      user_id: current_user.id) }
     task.tags = []
     task.save
     make_tagging(tag_array, task.id)
@@ -33,10 +36,12 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def update
-    #tag_array = task.tags.collect { |tag| Tag.find_or_create_by(name: tag.name) }
-    #make_tagging(tag_array, task.id)
     task = Task.find(params[:id])
+    tag_array = params[:tags].collect{ |tag| Tag.find_or_create_by(name: tag[:name],
+      user_id: current_user.id) }
+    make_tagging(tag_array, task.id)
     task.update(task_params)
+
     render task_json(task)
   end
 
@@ -53,6 +58,7 @@ class Api::V1::TasksController < ApplicationController
       description: task.description,
       dateline: task.dateline,
       is_completed: task.is_completed,
+      user_id: task.user_id,
       tags: task.tags.map do |tag|
         {
           name: tag.name
@@ -64,8 +70,9 @@ class Api::V1::TasksController < ApplicationController
   def make_tagging(tag_array, task_id)
     tag_array.map do |tag|
       tagging = Tagging.new
-      tagging.task_id = task_id
       tagging.tag_id = tag.id
+      tagging.task_id = task_id
+      tagging.user_id = current_user.id
       tagging.save
     end
   end

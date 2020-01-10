@@ -1,14 +1,16 @@
-import React from 'react';
-import { Redirect } from 'react-router-dom';
-import CreateTag from './CreateTag';
-import FilterBar from '../utils/FilterBar'
+import React from "react";
+import { Redirect } from "react-router-dom";
+import axios from "axios";
+import CreateTag from "./CreateTag";
+import FilterBar from "../utils/FilterBar";
+import NavBar from "../utils/NavBar";
 
-export default class Tags extends React.Component {
+export default class TagIndex extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       tags: [],
-      searchTag: ''
+      searchTag: ""
     };
   }
 
@@ -17,15 +19,14 @@ export default class Tags extends React.Component {
   }
 
   fetchTagsList = () => {
-    fetch('/api/v1/tags').
-      then((response) => response.json()).
-      then((tags) =>  this.setState({ tags }));
+    axios.get("/api/v1/tags")
+      .then((response) => this.setState({ tags: response.data }));
   };
 
   handleDelete = (tagId) => {
-   fetch(`/api/v1/tags/${tagId}`, { method: 'delete' }).
-     then((response) => {
-       alert('Tag deleted successfully')
+  axios.delete(`/api/v1/tags/${tagId}`)
+     .then((response) => {
+       alert("Tag deleted successfully")
        this.fetchTagsList();
      });
    }
@@ -41,6 +42,7 @@ export default class Tags extends React.Component {
 
     return (
       <div>
+        <NavBar />
         <FilterBar handleFilter = {this.handleFilter.bind(this)}/>
         <CreateTag />
         <h3>All Tags</h3>

@@ -1,11 +1,13 @@
 class Api::V1::TagsController < ApplicationController
   def index
-    all_tags = Tag.all
+    all_tags = Tag.where({user_id: current_user.id})
     render json: all_tags
   end
 
   def create
-    tag = Tag.create(tag_params)
+    tag = Tag.new(tag_params)
+    tag.user_id = current_user.id
+    tag.save
     render json: tag
   end
 
@@ -19,6 +21,6 @@ class Api::V1::TagsController < ApplicationController
   end
 
   def tag_params
-    params.require(:tag).permit(:id, :name)
+    params.require(:tag).permit(:id, :name, :user_id)
   end
 end

@@ -1,6 +1,6 @@
-import React from 'react';
-import DateTime from 'react-datetime';
-import '../../stylesheets/Datetime.css';
+import React from "react";
+import DateTime from "react-datetime";
+import "../../stylesheets/Datetime.css";
 
 //note: to change handleDateChange in parent components. Don't break abstraction
 export default class TaskDate extends React.Component {
@@ -15,6 +15,6 @@ export default class TaskDate extends React.Component {
           closeOnSelect = {true}
           onChange = {this.props.handleDateChange}/>
       </div>
-    )
+    );
   }
 }

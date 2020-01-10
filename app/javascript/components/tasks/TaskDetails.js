@@ -1,5 +1,7 @@
-import React from 'react';
-import { stringifyTags, dateToString } from '../utils/utils';
+import React from "react";
+import axios from "axios";
+import NavBar from "../utils/NavBar";
+import { stringifyTags, dateToString } from "../utils/utils";
 
 export default class TaskDetails extends React.Component {
   constructor(props) {
@@ -9,16 +11,17 @@ export default class TaskDetails extends React.Component {
 
   componentDidMount() {
     const { match: { params: { id } } } = this.props;
-    fetch(`/api/v1/tasks/${id}`).
-      then((response) => response.json()).
-      then((task) => this.setState({ task }));
+    axios.get(`/api/v1/tasks/${id}`)
+      .then((response) => {
+        this.setState({ task: response.data });
+    })
   }
 
   render() {
     const { task } = this.state;
-    console.log(task.tags)
     return (
       <div>
+        <NavBar />
         <div>
           <label> Description </label>
           <p> {task.description} </p>
@@ -31,7 +34,7 @@ export default class TaskDetails extends React.Component {
 
         <div>
           <label> Completed? </label>
-          <p> {task.is_completed ? 'Done' : 'Pending' } </p>
+          <p> {task.is_completed ? "Done" : "Pending" } </p>
         </div>
 
         <div>

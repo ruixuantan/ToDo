@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const dateToString = (date) => {
   if (date == undefined) {
     return "dateline error";
@@ -16,10 +14,6 @@ export const stringifyTags = (tagArray) => {
   }
 }
 
-export const arrayifyTags = (tagString) => {
-  const arr = tagString.toLowerCase().replace(/\s+/g, '').split(",");
-  for (let i = 0; i < arr.length; i++) {
-    arr[i] = {name: arr[i]}
-  }
-  return arr;
+export const objectifyTags = (tagArray) => {
+  return tagArray.map( tag => tag = {name: tag.toLowerCase()} );
 }

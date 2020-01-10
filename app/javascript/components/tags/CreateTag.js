@@ -1,40 +1,32 @@
-import React from 'react';
+import React from "react";
+import axios from "axios";
+import TagInput from "./TagInput";
 
 export default class CreateTag extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { name: '' };
+    this.state = {
+      tags: []
+    };
   }
 
-  handleInputChange = (event) => {
-    this.setState({ name: event.target.value });
+  handleTagAddition = (tagsPassed) => {
+    this.setState({ tags: tagsPassed });
   }
 
   createTagRequest = (event) => {
-    fetch('/api/v1/tags', {
-      method: 'post',
-      body: JSON.stringify({ name: this.state.name }),
-      headers: { 'Content-Type': 'application/json'}
-    }).then((response) => {
-      alert('Task created successfully');
-      location.href = '/tags';
-    });
+    this.state.tags.map(tag =>
+      axios.post("/api/v1/tags", { name: tag }))
+
+    alert("Tag created successfully");
+    location.href = "/tags";
   }
 
   render() {
-    const { name } = this.state;
     return (
       <div>
-        <h4>Add Tag</h4>
-        <div>
-          <label>Tag Name:</label>
-          <input
-            type='text'
-            name='name'
-            value={name}
-            onChange={this.handleInputChange}
-            />
-        </div>
+        <h4>Add Tags</h4>
+        <TagInput handleTagAddition = {this.handleTagAddition}/>
         <button onClick={this.createTagRequest}>Add</button>
       </div>
     );
