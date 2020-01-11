@@ -4,7 +4,11 @@ export default function FilterBar(props) {
   return (
     <div>
       <h3>FilterBar</h3>
-      <input onChange = {props.handleFilter} type = "text"/>
+      <input
+        onChange = {props.handleFilter}
+        type = "text"
+        placeholder = "enter a tag to filter"
+        />
     </div>
   );
 }

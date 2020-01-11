@@ -20,6 +20,7 @@ export default class CreateTask extends React.Component {
   }
 
   handleDateChange = (date) => {
+    console.log(date);
     this.setState({ dateline: date });
   }
 
@@ -38,7 +39,7 @@ export default class CreateTask extends React.Component {
       is_completed: this.state.is_completed,
       tags_attributes: objectifyTags(this.state.tags)
     },
-    {validateStatus: (status) => { return true; }
+    { validateStatus: (status) => { return true; }
     }).then((response) => {
       alert("Task created successfully");
       location.href = "/dashboard";
@@ -71,7 +72,7 @@ export default class CreateTask extends React.Component {
             onChange={this.toggleChange}
             />
         </div>
-        <TagInput handleTagAddition = {this.handleTagAddition}/>
+        <TagInput handleTagAddition = {this.handleTagAddition.bind(this)}/>
         <button onClick={this.createTaskRequest}>Add</button>
       </div>
     );

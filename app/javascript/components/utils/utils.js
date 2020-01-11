@@ -2,7 +2,9 @@ export const dateToString = (date) => {
   if (date == undefined) {
     return "dateline error";
   } else {
-    return JSON.stringify(date).substr(1, 10);
+    //convert date which is a string to JS datetime object
+    const d = new Date(date);
+    return d.toLocaleDateString();
   }
 }
 

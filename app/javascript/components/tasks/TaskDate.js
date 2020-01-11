@@ -3,6 +3,9 @@ import DateTime from "react-datetime";
 import "../../stylesheets/Datetime.css";
 
 export default class TaskDate extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
   render() {
     return (

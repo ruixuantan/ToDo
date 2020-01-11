@@ -14,8 +14,7 @@ export default class TaskTable extends React.Component {
         <table>
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Description</th>
+              <th>Task</th>
               <th>Dateline</th>
               <th>Completed?</th>
               <th>Actions</th>
@@ -27,7 +26,6 @@ export default class TaskTable extends React.Component {
             tasks.map((task) => {
               return (
                 <tr key={task.id}>
-                  <td>{task.id}</td>
                   <td>
                     <Link to={`/tasks/${task.id}`}>
                       {task.description}
