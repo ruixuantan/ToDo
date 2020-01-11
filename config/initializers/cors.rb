@@ -5,7 +5,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
   end
 
   allow do
-    origins "http://jdh-todo-app-react.herokuapp.com"
+    origins "https://young-headland-66589.herokuapp.com"
     resource "*", headers: :any, methods: [:get, :post, :put, :patch, :delete, :options, :head], credentials: true
   end
 end

@@ -8,5 +8,5 @@ class Tag < ApplicationRecord
   accepts_nested_attributes_for :tasks
   accepts_nested_attributes_for :taggings, allow_destroy: true
 
-  before_save :self.name.downcase!
+  before_save :self.name.downcase!.strip
 end
