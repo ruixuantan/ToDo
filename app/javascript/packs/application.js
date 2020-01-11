@@ -16,3 +16,4 @@ import "../stylesheets/App";
 import "../stylesheets/Datetime";
 import "../stylesheets/TagInput";
 import "../../assets/stylesheets/application";
+import "./test.js"
