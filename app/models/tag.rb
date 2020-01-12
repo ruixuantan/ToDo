@@ -11,6 +11,6 @@ class Tag < ApplicationRecord
   before_save :edit_name
 
   def edit_name
-    self.name.downcase!.strip!
+    self.name.strip.downcase!
   end
 end
