@@ -14,8 +14,8 @@
  *= require_self
  */
 
- @import "./Datetime";
- @import "./TagInput";
+ @import "./Datetime.css";
+ @import "./TagInput.css";
 
  body {
    font-family: Helvetica;
