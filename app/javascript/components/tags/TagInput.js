@@ -1,6 +1,5 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import "../../stylesheets/TagInput.css"
 
 export default class TagInput extends React.Component {
   constructor(props) {

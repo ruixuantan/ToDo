@@ -33,6 +33,7 @@ export default class Registration extends React.Component {
       }
     }).catch(error => {
       console.log(error);
+      alert("Username exists or password entered does not match");
     });
     event.preventDefault();
   }

@@ -1,6 +1,5 @@
 import React from "react";
 import DateTime from "react-datetime";
-import "../../stylesheets/Datetime.css";
 
 export default class TaskDate extends React.Component {
   constructor(props) {
