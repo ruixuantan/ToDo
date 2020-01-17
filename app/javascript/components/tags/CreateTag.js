@@ -25,9 +25,13 @@ export default class CreateTag extends React.Component {
   render() {
     return (
       <div>
-        <h4>Add Tags</h4>
-        <TagInput handleTagAddition = {this.handleTagAddition}/>
-        <button onClick={this.createTagRequest}>Add</button>
+        <h3>Add Tags</h3>
+        <TagInput handleTagAddition = { this.handleTagAddition }/>
+        <button
+          class = "btn btn-primary"
+          onClick = { this.createTagRequest }>
+          Add
+        </button>
       </div>
     );
   }

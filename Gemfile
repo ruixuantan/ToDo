@@ -58,3 +58,6 @@ gem 'mini_racer', platforms: :ruby
 
 gem 'bcrypt'
 gem 'rack-cors'
+
+gem 'bootstrap'
+gem 'jquery-rails'

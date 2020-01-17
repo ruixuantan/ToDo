@@ -33,9 +33,7 @@ export default class UpdateTask extends React.Component {
   }
 
   toggleChange = () => {
-    this.setState({
-      is_completed: !this.state.is_completed
-    });
+    this.setState({is_completed: !this.state.is_completed});
   }
 
   handleTagAddition = (tagsPassed) => {
@@ -50,7 +48,7 @@ export default class UpdateTask extends React.Component {
         is_completed: this.state.is_completed,
         tags: objectifyTags(this.state.tags)
       },
-      { validateStatus: (status) => { return true; }
+      {validateStatus: (status) => { return true;}
     }).then((response) => {
       alert("Task updated successfully");
       location.href = "/dashboard";
@@ -61,39 +59,48 @@ export default class UpdateTask extends React.Component {
 
   render() {
     const {description, dateline, is_completed, tags} = this.state;
-    console.log(this.state.tags);
     return (
       <div>
-      <NavBar />
-        <h3>New Task</h3>
-        <div>
-          <label>Description: </label>
+        <h3>{description}</h3>
+        <div class = "form-group">
+          <label>Description:</label>
           <input
-            type="text"
-            name="description"
-            value={description}
-            onChange={this.handleInputChange}
+            class = "form-control"
+            type = "text"
+            name = "description"
+            value = { description }
+            onChange = { this.handleInputChange }
             />
         </div>
-        <TaskDate
-          dateline = {this.state.dateline}
-          handleDateChange = {this.handleDateChange.bind(this)}
-          />
-        <div>
+        <div class = "form-group">
+          <label>Dateline:</label>
+          <TaskDate
+            dateline = { this.state.dateline }
+            handleDateChange = { this.handleDateChange.bind(this)  }
+            />
+        </div>
+        <div class = "form-group">
           <label>Completed</label>
           <input
-            type="checkbox"
-            name="is_completed"
-            value={is_completed}
-            checked={this.state.is_completed}
-            onChange={this.toggleChange}
+            type = "checkbox"
+            name = "is_completed"
+            value = { is_completed }
+            checked = { this.state.is_completed }
+            onChange = { this.toggleChange }
             />
         </div>
-        <TagInput
-          initialTags = {this.state.tags}
-          handleTagAddition = {this.handleTagAddition}
-          />
-        <button onClick={this.updateTaskRequest}>Update</button>
+        <div class = "form-group">
+          <label>Tags: </label>
+          <TagInput
+            initialTags = { this.state.tags }
+            handleTagAddition = { this.handleTagAddition }
+            />
+        </div>
+        <button
+          class = "btn btn-primary"
+          onClick = { this.updateTaskRequest }>
+          Update
+        </button>
       </div>
     );
   }

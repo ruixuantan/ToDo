@@ -47,33 +47,67 @@ export default class CreateTask extends React.Component {
   }
 
   render() {
-    console.log(this.props);
-    const {description, dateline, is_completed, tag_string} = this.state;
+    const { description, dateline, is_completed, tag_string } = this.state;
     return (
-      <div>
-        <h4>Add Task</h4>
-        <div>
-          <label>Description: </label>
-          <input
-            type="text"
-            name="description"
-            value={description}
-            onChange={this.handleInputChange}
-            />
+      <div class = "modal-body">
+        <div class = "modal-dialog">
+          <div class = "modal-content">
+
+            {/*Modal Header*/}
+            <div class = "modal-header">
+              <h6 class = "modal-title">Add Task</h6>
+              <button type = "button" class = "close" data-dismiss = "modal">
+                &times;
+              </button>
+            </div>
+
+            {/*Modal Body*/}
+            <div class = "modal-body">
+              <div class = "form-group">
+                <label>Description:</label>
+                <input
+                  class = "form-control"
+                  type = "text"
+                  name = "description"
+                  value = { description }
+                  onChange = { this.handleInputChange }
+                  />
+              </div>
+              <div class = "form-group">
+                <label>Dateline:</label>
+                <TaskDate handleDateChange = { this.handleDateChange.bind(this) } />
+              </div>
+              <div class = "form-group">
+                <label>Completed</label>
+                <input
+                  type = "checkbox"
+                  name = "is_completed"
+                  value = { is_completed }
+                  checked = { this.state.is_completed }
+                  onChange = { this.toggleChange }
+                  />
+              </div>
+              <div class = "form-group">
+                <label>Tags:</label>
+                <TagInput handleTagAddition = { this.handleTagAddition.bind(this) }/>
+              </div>
+
+
+              {/*Modal Footer*/}
+              <div class = "modal-footer">
+                <button type = "button" class = "btn btn-danger"
+                  data-dismiss = "modal">
+                  Close
+                </button>
+                <button
+                  class = "btn btn-primary" onClick = { this.createTaskRequest }>
+                  Add
+                </button>
+              </div>
+
+            </div>
+          </div>
         </div>
-        <TaskDate handleDateChange = {this.handleDateChange.bind(this)} />
-        <div>
-          <label>Completed</label>
-          <input
-            type="checkbox"
-            name="is_completed"
-            value={is_completed}
-            checked={this.state.is_completed}
-            onChange={this.toggleChange}
-            />
-        </div>
-        <TagInput handleTagAddition = {this.handleTagAddition.bind(this)}/>
-        <button onClick={this.createTaskRequest}>Add</button>
       </div>
     );
   }

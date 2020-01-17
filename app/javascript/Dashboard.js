@@ -1,34 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import Tasks from "./components/tasks/index";
+import CreateTask from "./components/tasks/CreateTask";
 import NavBar from "./components/utils/NavBar";
 
 export default class Dashboard extends React.Component {
 
   constructor(props) {
     super(props);
-
-    this.handleLogoutClick = this.handleLogoutClick.bind(this);
-  }
-
-  handleLogoutClick() {
-    axios.delete("/logout", {withCredentials: true})
-      .then(response => {
-        this.props.handleLogout();
-      })
-      .catch(error => {
-        console.log("logout errors", error);
-      });
   }
 
   render () {
     return (
       <div>
-        <div>
-          <button onClick = {() => this.handleLogoutClick()}>Logout</button>
-          <NavBar />
+        <br />
+        <button type = "button" class = "btn btn-primary" data-toggle = "modal"
+          data-target = "#addtask-modal">
+          + Add Task
+        </button>
+
+        <div class = "modal" id = "addtask-modal">
+          <CreateTask />
         </div>
+        <br />
         <br />
         <Tasks />
       </div>

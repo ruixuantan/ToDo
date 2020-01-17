@@ -11,8 +11,8 @@ export default class TaskTable extends React.Component {
    const tasks = this.props.all_tasks;
     return (
       <div>
-        <table>
-          <thead>
+        <table class = "table table-striped">
+          <thead class = "thead-dark">
             <tr>
               <th>Task</th>
               <th>Dateline</th>
@@ -34,10 +34,13 @@ export default class TaskTable extends React.Component {
                   <td>{dateToString(task.dateline)}</td>
                   <td>{task.is_completed ? "Done" : "Pending" }</td>
                   <td>
-                    <Link to={`/tasks/${task.id}/edit`}>
+                    <Link to={`/tasks/${task.id}/edit`}
+                    class="btn btn-info">
                       Edit
                     </Link>
-                    <button onClick={() => this.props.handleDelete(task.id) }>
+                    <button
+                      class="btn btn-danger"
+                      onClick={() => this.props.handleDelete(task.id) }>
                       Delete
                     </button>
                   </td>

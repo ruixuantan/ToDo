@@ -21,24 +21,23 @@ export default class TaskDetails extends React.Component {
     const { task } = this.state;
     return (
       <div>
-        <NavBar />
         <div>
-          <label> Description </label>
+          <h5> Description </h5>
           <p> {task.description} </p>
         </div>
 
         <div>
-          <label> Dateline </label>
+          <h5> Dateline </h5>
           <p> {dateToString(task.dateline)} </p>
         </div>
 
         <div>
-          <label> Completed? </label>
+          <h5> Completed? </h5>
           <p> {task.is_completed ? "Done" : "Pending" } </p>
         </div>
 
         <div>
-          <label> Tags </label>
+          <h5> Tags </h5>
           <p> {stringifyTags(task.tags)} </p>
         </div>
 

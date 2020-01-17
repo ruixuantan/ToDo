@@ -52,9 +52,8 @@ export default class Tasks extends React.Component {
 
     return (
       <div>
-        <Link to = "/tags">Manage Tags</Link>
         <FilterBar handleFilter = {this.handleFilter.bind(this)}/>
-        <CreateTask />
+        <br />
         <h3>All Tasks</h3>
         <TaskTable
           all_tasks = {filteredTags}

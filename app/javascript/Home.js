@@ -5,23 +5,31 @@ import Login from "./components/auth/Login";
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
   }
 
   handleSuccessfulAuth(data) {
     this.props.handleLogin(data);
-    location.href = "/dashboard";
   }
 
   render () {
     return (
-      <div>
-        <h3>Log In</h3>
+      <div class = "container">
         <Login handleSuccessfulAuth = {this.handleSuccessfulAuth}/>
+        <br />
+        <p>Don't have an account? Register
+          <span class = "pull-right">
+            <button type = "button" class = "btn btn-link" data-toggle = "modal"
+              data-target = "#register-modal">
+              here
+            </button>
+          </span>
+        </p>
 
-        <h3>Register for an account</h3>
-        <Registration handleSuccessfulAuth = {this.handleSuccessfulAuth}/>
+          <div class = "modal" id = "register-modal">
+            <Registration handleSuccessfulAuth = {this.handleSuccessfulAuth}/>
+          </div>
       </div>
     );
   }

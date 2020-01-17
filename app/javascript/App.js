@@ -1,11 +1,18 @@
 import React from "react";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import axios from "axios";
+
 import Home from "./Home";
 import Dashboard from "./Dashboard";
-import Routes from "./Routes";
+import Registration from "./components/auth/Registration";
+import NavBar from "./components/utils/NavBar";
 
-import "../assets/stylesheets/application.css";
+import Tasks from "./components/tasks/index";
+import TaskDetails from "./components/tasks/TaskDetails";
+import UpdateTask from "./components/tasks/UpdateTask";
+import TagIndex from "./components/tags/TagIndex";
+
+import "../assets/stylesheets/application.scss";
 
 export default class App extends React.Component {
   constructor() {
@@ -19,7 +26,7 @@ export default class App extends React.Component {
     this.handleLogout = this.handleLogout.bind(this);
   }
 
-  checkLoginStatus() {
+  checkLoginStatus = () => {
     axios.get("/logged_in", {withCredentials: true})
       .then(response => {
         if (response.data.logged_in && this.state.loggedInStatus === "NOT_LOGGED_IN") {
@@ -43,14 +50,15 @@ export default class App extends React.Component {
     this.checkLoginStatus();
   }
 
-  handleLogin(data) {
+  handleLogin = (data) => {
     this.setState({
       loggedInStatus: "LOGGED_IN",
       user: data.user
     });
+    location.href = "/dashboard";
   }
 
-  handleLogout() {
+  handleLogout = () => {
     this.setState({
       loggedInStatus: "NOT_LOGGED_IN",
       user: {}
@@ -58,16 +66,28 @@ export default class App extends React.Component {
     location.href = "/";
   }
 
+  RenderNavBar = () => {
+    return this.state.loggedInStatus == "LOGGED_IN"
+      ? <NavBar handleLogout = {this.handleLogout}/>
+      : null;
+
+  }
+
   render() {
     return (
       <div>
-      <h1>To-Do List</h1>
+        <div class = "jumbotron" id = "app-header">
+          <h1>To-Do List</h1>
+        </div>
         <BrowserRouter>
+          {this.state.loggedInStatus == "LOGGED_IN"
+            ? <NavBar handleLogout = {this.handleLogout}/>
+            : null}
           <Switch>
             <Route
-              exact
               path = "/"
-              render = {props => (
+              exact
+              render = { props => (
                 <Home {...props}
                   handleLogin = {this.handleLogin}
                   handleLogout = {this.handleLogout}
@@ -76,16 +96,43 @@ export default class App extends React.Component {
               )}
               />
             <Route
-              exact
               path = "/dashboard"
-              render = {props => (
-                <Dashboard {...props}
-                  handleLogout = {this.handleLogout}
-                  loggedInStatus = {this.state.loggedInStatus}
+              exact
+              render = { props => (
+                <Dashboard { ...props }
+                  handleLogout = { this.handleLogout }
                   />
               )}
               />
-          <Routes />
+            <Route exact path = "/dashboard">
+              <Tasks />
+            </Route>
+            <Route
+              path = "/tasks/:id/edit"
+              exact
+              component = { UpdateTask }
+              />
+            <Route
+              path = "/tasks/:id"
+              exact
+              component = { TaskDetails }
+             />
+             <Route
+               path = "/tags"
+               exact
+               render = { props => (
+                 <TagIndex { ...props }
+                   handleLogout = { this.handleLogout }
+                   />
+               )}
+              />
+            {/*}<Route
+              render = { props => (
+                <NavBar { ...props }
+                  handleLogout = { this.handleLogout }
+                  />
+              )}
+              />*/}
           </Switch>
         </BrowserRouter>
       </div>

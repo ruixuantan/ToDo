@@ -42,26 +42,29 @@ export default class TagIndex extends React.Component {
 
     return (
       <div>
-        <NavBar />
-        <FilterBar handleFilter = {this.handleFilter.bind(this)}/>
+        <br />
+        <FilterBar handleFilter = { this.handleFilter.bind(this) }/>
+        <br />
         <CreateTag />
+        <br />
         <h3>All Tags</h3>
-        <table>
-          <thead>
+        <table class = "table table-striped" id = "tag-index">
+          <thead class = "thead-dark">
             <tr>
-              <th>ID</th>
-              <th>Tag</th>
+              <th class = "col-2">Tag</th>
+	            <th class = "col-1">Delete</th>
             </tr>
           </thead>
           <tbody>
           {
             tags.map((tag) => {
               return (
-                <tr key={tag.id}>
-                  <td>{tag.id}</td>
-                  <td>{tag.name}</td>
+                <tr key={ tag.id }>
+                  <td>{ tag.name }</td>
                   <td>
-                    <button onClick={() => this.handleDelete(tag.id)}>
+                    <button
+                      class = "btn btn-danger"
+                      onClick = { () => this.handleDelete(tag.id) }>
                       Delete
                     </button>
                   </td>
