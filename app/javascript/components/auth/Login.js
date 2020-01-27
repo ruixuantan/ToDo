@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import axios from "axios";
 
 export default class Login extends Component {
@@ -29,6 +29,8 @@ export default class Login extends Component {
       ).then(response => {
         if (response.data.logged_in) {
           this.props.handleSuccessfulAuth(response.data);
+        } else {
+          alert("Password is wrong or username doesn't exist");
         }
       })
       .catch(error => {
@@ -42,7 +44,7 @@ export default class Login extends Component {
       <div>
         <h5>Login</h5>
         <form onSubmit={ this.handleSubmit }>
-          <div class = "form-group">
+          <div className = "form-group">
             <input
               type = "email"
               name = "email"
@@ -52,18 +54,18 @@ export default class Login extends Component {
               required
               />
           </div>
-          <div class = "form-group">
+          <div className = "form-group">
             <input
               type = "password"
               name = "password"
               placeholder = "Password"
               value = { this.state.password }
-              onChange = { this.handleInputChange} 
+              onChange = { this.handleInputChange}
               required
               />
           </div>
           <button
-            class = "btn btn-primary"
+            className = "btn btn-primary"
             type = "submit">LOGIN</button>
         </form>
       </div>

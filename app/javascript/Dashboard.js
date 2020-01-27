@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import Tasks from "./components/tasks/index";
 import CreateTask from "./components/tasks/CreateTask";
 import NavBar from "./components/utils/NavBar";
@@ -14,12 +14,12 @@ export default class Dashboard extends React.Component {
     return (
       <div>
         <br />
-        <button type = "button" class = "btn btn-primary" data-toggle = "modal"
-          data-target = "#addtask-modal">
+        <button type = "button" className = "btn btn-primary"
+          data-toggle = "modal" data-target = "#addtask-modal">
           + Add Task
         </button>
 
-        <div class = "modal" id = "addtask-modal">
+        <div className = "modal" id = "addtask-modal">
           <CreateTask />
         </div>
         <br />

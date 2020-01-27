@@ -36,10 +36,15 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def update
+    puts("UPDATEUPDATE")
     task = Task.find(params[:id])
-    tag_array = params[:tags].collect{ |tag| Tag.find_or_create_by(name: tag[:name],
-      user_id: current_user.id) }
-    make_tagging(tag_array, task.id)
+    delete_tagging(task.taggings)
+    if params[:tags]
+      tag_array = params[:tags].collect{ |tag| Tag.find_or_create_by(name: tag[:name],
+        user_id: current_user.id) }
+      make_tagging(tag_array, task.id)
+    else
+    end
     task.update(task_params)
 
     render task_json(task)
@@ -74,6 +79,13 @@ class Api::V1::TasksController < ApplicationController
       tagging.task_id = task_id
       tagging.user_id = current_user.id
       tagging.save
+    end
+  end
+
+  def delete_tagging(taggings)
+    puts("RANTAN2")
+    taggings.map do |tagging|
+      tagging.destroy
     end
   end
 

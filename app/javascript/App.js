@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import {BrowserRouter, Switch, Route, Link} from "react-router-dom";
 import axios from "axios";
 
 import Home from "./Home";
@@ -76,7 +76,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <div class = "jumbotron" id = "app-header">
+        <div className = "jumbotron" id = "app-header">
           <h1>To-Do List</h1>
         </div>
         <BrowserRouter>
@@ -87,7 +87,7 @@ export default class App extends React.Component {
             <Route
               path = "/"
               exact
-              render = { props => (
+              render = {props => (
                 <Home {...props}
                   handleLogin = {this.handleLogin}
                   handleLogout = {this.handleLogout}
@@ -98,9 +98,9 @@ export default class App extends React.Component {
             <Route
               path = "/dashboard"
               exact
-              render = { props => (
-                <Dashboard { ...props }
-                  handleLogout = { this.handleLogout }
+              render = {props => (
+                <Dashboard {...props}
+                  handleLogout = {this.handleLogout}
                   />
               )}
               />
@@ -110,29 +110,22 @@ export default class App extends React.Component {
             <Route
               path = "/tasks/:id/edit"
               exact
-              component = { UpdateTask }
+              component = {UpdateTask}
               />
             <Route
               path = "/tasks/:id"
               exact
-              component = { TaskDetails }
+              component = {TaskDetails}
              />
              <Route
                path = "/tags"
                exact
-               render = { props => (
-                 <TagIndex { ...props }
-                   handleLogout = { this.handleLogout }
+               render = {props => (
+                 <TagIndex {...props}
+                   handleLogout = {this.handleLogout}
                    />
                )}
               />
-            {/*}<Route
-              render = { props => (
-                <NavBar { ...props }
-                  handleLogout = { this.handleLogout }
-                  />
-              )}
-              />*/}
           </Switch>
         </BrowserRouter>
       </div>

@@ -10,13 +10,13 @@ export default class CreateTag extends React.Component {
     };
   }
 
-  handleTagAddition = (tagsPassed) => {
-    this.setState({ tags: tagsPassed });
+  handleTagChange = (tagsPassed) => {
+    this.setState({tags: tagsPassed});
   }
 
   createTagRequest = (event) => {
     this.state.tags.map(tag =>
-      axios.post("/api/v1/tags", { name: tag }))
+      axios.post("/api/v1/tags", {name: tag}))
 
     alert("Tag created successfully");
     location.href = "/tags";
@@ -26,10 +26,10 @@ export default class CreateTag extends React.Component {
     return (
       <div>
         <h3>Add Tags</h3>
-        <TagInput handleTagAddition = { this.handleTagAddition }/>
+        <TagInput handleTagChange = {this.handleTagChange}/>
         <button
-          class = "btn btn-primary"
-          onClick = { this.createTagRequest }>
+          className = "btn btn-primary"
+          onClick = {this.createTagRequest}>
           Add
         </button>
       </div>

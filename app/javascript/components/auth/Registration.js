@@ -16,7 +16,7 @@ export default class Registration extends React.Component {
   }
 
   handleInputChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({[event.target.name]: event.target.value});
   }
 
   handleSubmit = (event) => {
@@ -26,7 +26,7 @@ export default class Registration extends React.Component {
         password: this.state.password,
         password_confirmation: this.state.password_confirmation
       }
-    }, { withCredentials: true }
+    }, {withCredentials: true}
     ).then(response => {
       if (response.data.status === "created") {
         this.props.handleSuccessfulAuth(response.data)
@@ -40,21 +40,22 @@ export default class Registration extends React.Component {
 
   render() {
     return (
-      <div class = "modal-body">
-        <div class = "modal-dialog">
-          <div class = "modal-content">
+      <div className = "modal-body">
+        <div className = "modal-dialog">
+          <div className = "modal-content">
 
             {/*Modal Header*/}
-            <div class = "modal-header">
-              <h6 class = "modal-title">Register</h6>
-              <button type = "button" class = "close" data-dismiss = "modal">&times;</button>
+            <div className = "modal-header">
+              <h6 className = "modal-title">Register</h6>
+              <button type = "button" className = "close" data-dismiss = "modal">
+                &times;
+              </button>
             </div>
 
             {/*Modal Actual*/}
-            <div class = "modal-body">
-
+            <div className = "modal-body">
               <form onSubmit = {this.handleSubmit}>
-                <div class = "form-group">
+                <div className = "form-group">
                   <input
                     type = "email"
                     name = "email"
@@ -64,7 +65,7 @@ export default class Registration extends React.Component {
                     required
                     />
                 </div>
-                <div class = "form-group">
+                <div className = "form-group">
                   <input
                     type = "password"
                     name = "password"
@@ -74,7 +75,7 @@ export default class Registration extends React.Component {
                     required
                     />
                 </div>
-                <div class = "form-group">
+                <div className = "form-group">
                   <input
                     type = "password"
                     name = "password_confirmation"
@@ -85,15 +86,17 @@ export default class Registration extends React.Component {
                     />
                   </div>
                   <button
-                    class = "btn btn-primary btn-sm"
+                    className = "btn btn-primary btn-sm"
                     type = "submit">REGISTER</button>
               </form>
             </div>
 
             {/*Modal Footer*/}
-            <div class = "modal-footer">
-              <button type = "button" class = "btn btn-danger" data-dismiss = "modal">
-                Close</button>
+            <div className = "modal-footer">
+              <button type = "button" className = "btn btn-danger"
+                data-dismiss = "modal">
+                Close
+              </button>
             </div>
 
           </div>

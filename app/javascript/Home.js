@@ -9,27 +9,26 @@ export default class Home extends React.Component {
     this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
   }
 
-  handleSuccessfulAuth(data) {
+  handleSuccessfulAuth = (data) => {
     this.props.handleLogin(data);
   }
 
   render () {
     return (
-      <div class = "container">
+      <div className = "container">
         <Login handleSuccessfulAuth = {this.handleSuccessfulAuth}/>
         <br />
-        <p>Don't have an account? Register
-          <span class = "pull-right">
-            <button type = "button" class = "btn btn-link" data-toggle = "modal"
-              data-target = "#register-modal">
-              here
-            </button>
-          </span>
+        <p>Don't have an account? Register&nbsp;
+          <button type = "button"
+            data-toggle = "modal" data-target = "#register-modal"
+            id = "register-link">
+            here
+          </button>
         </p>
 
-          <div class = "modal" id = "register-modal">
-            <Registration handleSuccessfulAuth = {this.handleSuccessfulAuth}/>
-          </div>
+        <div className = "modal" id = "register-modal">
+          <Registration handleSuccessfulAuth = {this.handleSuccessfulAuth}/>
+        </div>
       </div>
     );
   }

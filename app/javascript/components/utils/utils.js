@@ -9,13 +9,14 @@ export const dateToString = (date) => {
 }
 
 export const stringifyTags = (tagArray) => {
-  return tagArray == undefined
+  return !tagArray
     ? "no taggings"
     : tagArray.map(tag => " " + tag.name).toString();
 }
 
 export const objectifyTags = (tagArray) => {
-  return tagArray && tagArray.length
-    ? tagArray.map( tag => tag = {name: tag.toLowerCase()})
+  console.log(tagArray.map(tag => tag = {name: tag.toLowerCase()}));
+  return tagArray && tagArray.length > 0
+    ? tagArray.map(tag => tag = {name: tag.toLowerCase()})
     : null;
 }

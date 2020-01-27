@@ -1,10 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import axios from "axios";
 import FilterBar from "../utils/FilterBar";
 import CreateTask from "./CreateTask";
 import TaskTable from "./TaskTable";
-import { stringifyTags, dateToString } from "../utils/utils";
+import {stringifyTags, dateToString} from "../utils/utils";
 
 export default class Tasks extends React.Component {
   constructor(props) {
@@ -21,7 +21,7 @@ export default class Tasks extends React.Component {
 
   fetchTasksList = () => {
     axios.get("/api/v1/tasks")
-      .then((response) => this.setState({ tasks: response.data }));
+      .then((response) => this.setState({tasks: response.data}));
   };
 
   handleDelete = (taskId) => {
@@ -33,7 +33,7 @@ export default class Tasks extends React.Component {
   }
 
    handleFilter = (event) => {
-     this.setState({ searchTag: event.target.value })
+     this.setState({searchTag: event.target.value})
    }
 
   render() {

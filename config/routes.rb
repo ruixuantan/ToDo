@@ -12,14 +12,13 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'tasks/:id/edit', to: 'hello_world#index';
-  get 'tasks/:id', to: 'hello_world#index';
-  get 'tasks/new', to: 'hello_world#index';
-  #get 'tasks/', to: 'hello_world#index';
+  get "tasks/:id/edit", to: "hello_world#index";
+  get "tasks/:id", to: "hello_world#index";
+  get "tasks/new", to: "hello_world#index";
 
-  get 'tags/', to: 'hello_world#index';
-  get 'dashboard/', to: 'hello_world#index';
-  get 'mainpage/', to: 'hello_world#index';
+  get "tags/", to: "hello_world#index";
+  get "dashboard/", to: "hello_world#index";
+  get "mainpage/", to: "hello_world#index";
 
-  root 'hello_world#index'
+  root "hello_world#index"
 end

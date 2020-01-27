@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { stringifyTags, dateToString } from "../utils/utils";
+import {Link} from "react-router-dom";
+import {stringifyTags, dateToString} from "../utils/utils";
 
 export default class TaskTable extends React.Component {
   constructor(props) {
@@ -11,8 +11,8 @@ export default class TaskTable extends React.Component {
    const tasks = this.props.all_tasks;
     return (
       <div>
-        <table class = "table table-striped">
-          <thead class = "thead-dark">
+        <table className = "table table-striped">
+          <thead className = "thead-dark">
             <tr>
               <th>Task</th>
               <th>Dateline</th>
@@ -32,15 +32,15 @@ export default class TaskTable extends React.Component {
                     </Link>
                   </td>
                   <td>{dateToString(task.dateline)}</td>
-                  <td>{task.is_completed ? "Done" : "Pending" }</td>
+                  <td>{task.is_completed ? "Done" : "Pending"}</td>
                   <td>
-                    <Link to={`/tasks/${task.id}/edit`}
-                    class="btn btn-info">
+                    <Link to = {`/tasks/${task.id}/edit`}
+                    className = "btn btn-info">
                       Edit
                     </Link>
                     <button
-                      class="btn btn-danger"
-                      onClick={() => this.props.handleDelete(task.id) }>
+                      className = "btn btn-danger"
+                      onClick={() => this.props.handleDelete(task.id)}>
                       Delete
                     </button>
                   </td>
