@@ -31,22 +31,22 @@ export default class CreateTask extends React.Component {
     this.setState({tags: tagsPassed});
   }
 
-  createTaskRequest = (event) => {
+  createTaskRequest = () => {
     axios.post("/api/v1/tasks", {
       description: this.state.description,
       dateline: this.state.dateline,
       is_completed: this.state.is_completed,
       tags_attributes: objectifyTags(this.state.tags)
     },
-    {validateStatus: (status) => {return true;}
-    }).then((response) => {
+    {validateStatus: () => {return true;}
+    }).then(() => {
       alert("Task created successfully");
       location.href = "/dashboard";
     });
   }
 
   render() {
-    const {description, dateline, is_completed, tag_string} = this.state;
+    const {description, is_completed} = this.state;
     return (
       <div className = "modal-body">
         <div className = "modal-dialog">

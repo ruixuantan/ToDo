@@ -36,7 +36,6 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def update
-    puts("UPDATEUPDATE")
     task = Task.find(params[:id])
     delete_tagging(task.taggings)
     if params[:tags]
@@ -83,7 +82,6 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def delete_tagging(taggings)
-    puts("RANTAN2")
     taggings.map do |tagging|
       tagging.destroy
     end

@@ -1,8 +1,6 @@
 import React from "react";
-import {Link} from "react-router-dom";
 import Tasks from "./components/tasks/index";
 import CreateTask from "./components/tasks/CreateTask";
-import NavBar from "./components/utils/NavBar";
 
 export default class Dashboard extends React.Component {
 

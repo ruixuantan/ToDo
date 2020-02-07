@@ -1,9 +1,7 @@
 import React from "react";
-import {Redirect} from "react-router-dom";
 import axios from "axios";
 import CreateTag from "./CreateTag";
 import FilterBar from "../utils/FilterBar";
-import NavBar from "../utils/NavBar";
 
 export default class TagIndex extends React.Component {
   constructor(props) {
@@ -25,7 +23,7 @@ export default class TagIndex extends React.Component {
 
   handleDelete = (tagId) => {
   axios.delete(`/api/v1/tags/${tagId}`)
-     .then((response) => {
+     .then(() => {
        alert("Tag deleted successfully")
        this.fetchTagsList();
      });
@@ -34,7 +32,7 @@ export default class TagIndex extends React.Component {
    handleDeleteAll = (tagIds) => {
      tagIds.map((tagId) => {
        axios.delete(`/api/v1/tags/${tagId.id}`)
-          .then((response) => {
+          .then(() => {
             this.fetchTagsList();
           });
      })

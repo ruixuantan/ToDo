@@ -14,7 +14,7 @@ export default class CreateTag extends React.Component {
     this.setState({tags: tagsPassed});
   }
 
-  createTagRequest = (event) => {
+  createTagRequest = () => {
     this.state.tags.map(tag =>
       axios.post("/api/v1/tags", {name: tag}))
 

@@ -12,7 +12,7 @@ export default class NavBar extends React.Component {
 
   handleLogoutClick = () => {
     axios.delete("/logout", { withCredentials: true })
-      .then(response => {
+      .then(() => {
         this.props.handleLogout();
       })
       .catch(error => {

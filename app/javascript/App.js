@@ -1,10 +1,9 @@
 import React from "react";
-import {BrowserRouter, Switch, Route, Link} from "react-router-dom";
+import {BrowserRouter, Switch, Route} from "react-router-dom";
 import axios from "axios";
 
 import Home from "./Home";
 import Dashboard from "./Dashboard";
-import Registration from "./components/auth/Registration";
 import NavBar from "./components/utils/NavBar";
 
 import Tasks from "./components/tasks/index";
@@ -64,13 +63,6 @@ export default class App extends React.Component {
       user: {}
     });
     location.href = "/";
-  }
-
-  RenderNavBar = () => {
-    return this.state.loggedInStatus == "LOGGED_IN"
-      ? <NavBar handleLogout = {this.handleLogout}/>
-      : null;
-
   }
 
   render() {

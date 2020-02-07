@@ -1,7 +1,6 @@
 import React from "react";
 import TaskDate from "./TaskDate";
 import axios from "axios";
-import NavBar from "../utils/NavBar";
 import TagInput from "../tags/TagInput";
 import {objectifyTags} from "../utils/utils";
 
@@ -43,7 +42,7 @@ export default class UpdateTask extends React.Component {
     this.setState({tags: tagsPassed});
   }
 
-  updateTaskRequest = (event) => {
+  updateTaskRequest = () => {
     axios.put(`/api/v1/tasks/${this.state.id}`,
       {
         description: this.state.description,
@@ -51,8 +50,8 @@ export default class UpdateTask extends React.Component {
         is_completed: this.state.is_completed,
         tags: objectifyTags(this.state.tags)
       },
-      {validateStatus: (status) => {return true;}
-    }).then((response) => {
+      {validateStatus: () => {return true;}
+    }).then(() => {
       alert("Task updated successfully");
       location.href = "/dashboard";
     }).catch(error => {
@@ -61,7 +60,7 @@ export default class UpdateTask extends React.Component {
   }
 
   render() {
-    const {description, dateline, is_completed, tags} = this.state;
+    const {description, is_completed} = this.state;
     return (
       <div>
         <h3>Update Task</h3>

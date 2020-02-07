@@ -1,10 +1,7 @@
 import React from "react";
-import {Link} from "react-router-dom";
 import axios from "axios";
 import FilterBar from "../utils/FilterBar";
-import CreateTask from "./CreateTask";
 import TaskTable from "./TaskTable";
-import {stringifyTags, dateToString} from "../utils/utils";
 
 export default class Tasks extends React.Component {
   constructor(props) {
@@ -26,7 +23,7 @@ export default class Tasks extends React.Component {
 
   handleDelete = (taskId) => {
     axios.delete(`/api/v1/tasks/${taskId}`)
-       .then((response) => {
+       .then(() => {
          alert("Task deleted successfully")
          this.fetchTasksList();
     });

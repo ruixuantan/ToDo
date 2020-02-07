@@ -15,7 +15,6 @@ export const stringifyTags = (tagArray) => {
 }
 
 export const objectifyTags = (tagArray) => {
-  console.log(tagArray.map(tag => tag = {name: tag.toLowerCase()}));
   return tagArray && tagArray.length > 0
     ? tagArray.map(tag => tag = {name: tag.toLowerCase()})
     : null;

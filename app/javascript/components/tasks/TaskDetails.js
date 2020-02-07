@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import NavBar from "../utils/NavBar";
 import {stringifyTags, dateToString} from "../utils/utils";
 
 export default class TaskDetails extends React.Component {
